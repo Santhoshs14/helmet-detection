@@ -1,0 +1,236 @@
+﻿
+> dashboard@0.0.0 lint
+> eslint .
+
+
+D:\FSD\helmet_detection\dashboard\src\App.jsx
+   3:27  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           no-unused-vars
+  71:43  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+  69 |
+  70 |         {/* Protected Routes */}
+> 71 |         <Route path="/overview" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
+     |                                           ^^^^^^^^^^^^^^ This component is created during render
+  72 |         <Route path="/dashboard" element={<ProtectedRoute><LiveCamera /></ProtectedRoute>} />
+  73 |         <Route path="/metrics" element={<ProtectedRoute><Metrics /></ProtectedRoute>} />
+  74 |         <Route path="/logs" element={<ProtectedRoute><Violations /></ProtectedRoute>} />
+
+  43 |
+  44 |   // Protected wrapper ensuring user stays out if not logged in
+> 45 |   const ProtectedRoute = ({ children }) => {
+     |                          ^^^^^^^^^^^^^^^^^^^
+> 46 |     return isAuthenticated ? (
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |       <DashboardLayout>
+     ΓÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     ) : <Navigate to="/" />;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 59 |   };
+     | ^^^^ The component is created during render here
+  60 |
+  61 |   return (
+  62 |     <AnimatePresence mode="wait">                                                                                                                                                  react-hooks/static-components
+  72:44  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+  70 |         {/* Protected Routes */}
+  71 |         <Route path="/overview" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
+> 72 |         <Route path="/dashboard" element={<ProtectedRoute><LiveCamera /></ProtectedRoute>} />
+     |                                            ^^^^^^^^^^^^^^ This component is created during render
+  73 |         <Route path="/metrics" element={<ProtectedRoute><Metrics /></ProtectedRoute>} />
+  74 |         <Route path="/logs" element={<ProtectedRoute><Violations /></ProtectedRoute>} />
+  75 |         <Route path="/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
+
+  43 |
+  44 |   // Protected wrapper ensuring user stays out if not logged in
+> 45 |   const ProtectedRoute = ({ children }) => {
+     |                          ^^^^^^^^^^^^^^^^^^^
+> 46 |     return isAuthenticated ? (
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |       <DashboardLayout>
+     ΓÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     ) : <Navigate to="/" />;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 59 |   };
+     | ^^^^ The component is created during render here
+  60 |
+  61 |   return (
+  62 |     <AnimatePresence mode="wait">                                                          react-hooks/static-components
+  73:42  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+  71 |         <Route path="/overview" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
+  72 |         <Route path="/dashboard" element={<ProtectedRoute><LiveCamera /></ProtectedRoute>} />
+> 73 |         <Route path="/metrics" element={<ProtectedRoute><Metrics /></ProtectedRoute>} />
+     |                                          ^^^^^^^^^^^^^^ This component is created during render
+  74 |         <Route path="/logs" element={<ProtectedRoute><Violations /></ProtectedRoute>} />
+  75 |         <Route path="/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
+  76 |         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+
+  43 |
+  44 |   // Protected wrapper ensuring user stays out if not logged in
+> 45 |   const ProtectedRoute = ({ children }) => {
+     |                          ^^^^^^^^^^^^^^^^^^^
+> 46 |     return isAuthenticated ? (
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |       <DashboardLayout>
+     ΓÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     ) : <Navigate to="/" />;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 59 |   };
+     | ^^^^ The component is created during render here
+  60 |
+  61 |   return (
+  62 |     <AnimatePresence mode="wait">  react-hooks/static-components
+  74:39  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+  72 |         <Route path="/dashboard" element={<ProtectedRoute><LiveCamera /></ProtectedRoute>} />
+  73 |         <Route path="/metrics" element={<ProtectedRoute><Metrics /></ProtectedRoute>} />
+> 74 |         <Route path="/logs" element={<ProtectedRoute><Violations /></ProtectedRoute>} />
+     |                                       ^^^^^^^^^^^^^^ This component is created during render
+  75 |         <Route path="/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
+  76 |         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+  77 |
+
+  43 |
+  44 |   // Protected wrapper ensuring user stays out if not logged in
+> 45 |   const ProtectedRoute = ({ children }) => {
+     |                          ^^^^^^^^^^^^^^^^^^^
+> 46 |     return isAuthenticated ? (
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |       <DashboardLayout>
+     ΓÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     ) : <Navigate to="/" />;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 59 |   };
+     | ^^^^ The component is created during render here
+  60 |
+  61 |   return (
+  62 |     <AnimatePresence mode="wait">                                                                                                react-hooks/static-components
+  75:41  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+  73 |         <Route path="/metrics" element={<ProtectedRoute><Metrics /></ProtectedRoute>} />
+  74 |         <Route path="/logs" element={<ProtectedRoute><Violations /></ProtectedRoute>} />
+> 75 |         <Route path="/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
+     |                                         ^^^^^^^^^^^^^^ This component is created during render
+  76 |         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+  77 |
+  78 |         {/* Fallback */}
+
+  43 |
+  44 |   // Protected wrapper ensuring user stays out if not logged in
+> 45 |   const ProtectedRoute = ({ children }) => {
+     |                          ^^^^^^^^^^^^^^^^^^^
+> 46 |     return isAuthenticated ? (
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |       <DashboardLayout>
+     ΓÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     ) : <Navigate to="/" />;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 59 |   };
+     | ^^^^ The component is created during render here
+  60 |
+  61 |   return (
+  62 |     <AnimatePresence mode="wait">                                                                                                                                                                   react-hooks/static-components
+  76:43  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+  74 |         <Route path="/logs" element={<ProtectedRoute><Violations /></ProtectedRoute>} />
+  75 |         <Route path="/alerts" element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
+> 76 |         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+     |                                           ^^^^^^^^^^^^^^ This component is created during render
+  77 |
+  78 |         {/* Fallback */}
+  79 |         <Route path="*" element={<Navigate to="/" />} />
+
+  43 |
+  44 |   // Protected wrapper ensuring user stays out if not logged in
+> 45 |   const ProtectedRoute = ({ children }) => {
+     |                          ^^^^^^^^^^^^^^^^^^^
+> 46 |     return isAuthenticated ? (
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |       <DashboardLayout>
+     ΓÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     ) : <Navigate to="/" />;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 59 |   };
+     | ^^^^ The component is created during render here
+  60 |
+  61 |   return (
+  62 |     <AnimatePresence mode="wait">                                                                                                                                                                                                 react-hooks/static-components
+
+D:\FSD\helmet_detection\dashboard\src\components\Sidebar.jsx
+  4:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\FSD\helmet_detection\dashboard\src\context\AuthContext.jsx
+   1:47  error  'useEffect' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                no-unused-vars
+  30:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+D:\FSD\helmet_detection\dashboard\src\hooks\useWebSocket.js
+  19:27  error  'closeEvent' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  no-unused-vars
+  26:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  24 |     useEffect(() => {
+  25 |         if (lastJsonMessage !== null) {
+> 26 |             setStats(lastJsonMessage);
+     |             ^^^^^^^^ Avoid calling setState() directly within an effect
+  27 |
+  28 |             // Trigger toast on new violation logged
+  29 |             if (lastJsonMessage.violations && lastJsonMessage.violations.length > prevViolationsCount.current) {  react-hooks/set-state-in-effect
+
+D:\FSD\helmet_detection\dashboard\src\pages\Alerts.jsx
+   2:10  error    'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                 no-unused-vars
+  36:8   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  51:18  error    'e' is defined but never used                                                                                 no-unused-vars
+  69:18  error    'e' is defined but never used                                                                                 no-unused-vars
+  82:18  error    'e' is defined but never used                                                                                 no-unused-vars
+
+D:\FSD\helmet_detection\dashboard\src\pages\LiveCamera.jsx
+   3:10  error    'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                       no-unused-vars
+  16:11  error    'streamTimestamp' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                     no-unused-vars
+  16:65  warning  React Hook useMemo has an unnecessary dependency: 'cameraActive'. Either exclude it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\FSD\helmet_detection\dashboard\src\pages\Login.jsx
+  4:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\FSD\helmet_detection\dashboard\src\pages\Metrics.jsx
+  1:10  error  'useState' is defined but never used. Allowed unused vars must match /^[A-Z_]/u              no-unused-vars
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                no-unused-vars
+  8:20  error  'isConnected' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\FSD\helmet_detection\dashboard\src\pages\Overview.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\FSD\helmet_detection\dashboard\src\pages\Settings.jsx
+    3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+   37:22  error  'e' is defined but never used                                                  no-unused-vars
+   57:18  error  'e' is defined but never used                                                  no-unused-vars
+   84:18  error  'e' is defined but never used                                                  no-unused-vars
+  103:18  error  'e' is defined but never used                                                  no-unused-vars
+
+D:\FSD\helmet_detection\dashboard\src\pages\Violations.jsx
+  3:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+Γ£û 31 problems (29 errors, 2 warnings)
+

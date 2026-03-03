@@ -1,0 +1,12 @@
+numpy
+mediapipe
+pillow
+opencv-python-headless
+fastapi
+uvicorn[standard]
+python-multipart
+websockets
+python-jose[cryptography]
+passlib[bcrypt]
+slowapi
+bcrypt<4.0.0

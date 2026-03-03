@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: helmet-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./helmet_vision.db:/app/helmet_vision.db # Persist SQLite datastore outside container
+    restart: always
+    # IMPORTANT for Webcams on Linux:
+    # devices:
+    #   - "/dev/video0:/dev/video0" # Uncomment to map physical USB cameras to container
+    # * Note: Windows users using Docker Desktop cannot natively pass USB cameras using devices. 
+    # Use RTSP network IP cameras if relying purely on Docker-Windows instead of WSL/Native.
+
+  frontend:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile.frontend
+    container_name: helmet-dashboard
+    ports:
+      - "5173:80" # Expose NGINX port 80 to localhost:5173 for user-friendly Vite-like mapping
+    restart: always
+    depends_on:
+      - backend

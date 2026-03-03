@@ -1,0 +1,30 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+*.log
+
+# Database & runtime data
+helmet_vision.db
+violations/
+
+# Model (large file - already in repo, do NOT re-add via LFS unless needed)
+# best.tflite
+
+# Docs & temp
+research_paper/
+research_paper.zip
+*.docx
+
+# Frontend
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.env.local
+
+# OS
+.DS_Store
+Thumbs.db
