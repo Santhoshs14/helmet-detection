@@ -292,6 +292,86 @@ async def websocket_stats(websocket: WebSocket):
     except Exception as e:
         print(f"WS error: {e}")
 
+# --- WebSocket camera inference (browser sends frames, server runs detection) ---
+@app.websocket("/ws/camera")
+async def websocket_camera(websocket: WebSocket):
+    """
+    Accepts JPEG frame bytes from the browser (captured via getUserMedia),
+    runs MediaPipe object detection, logs violations, and returns JSON results.
+    """
+    global state, last_violation_time
+    await websocket.accept()
+    logger.info("Camera WebSocket client connected")
+    try:
+        while True:
+            frame_bytes = await websocket.receive_bytes()
+            nparr = np.frombuffer(frame_bytes, np.uint8)
+            frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            if frame is None:
+                continue
+
+            current_helmets = 0
+            current_no_helmets = 0
+            detections_out = []
+
+            if detector:
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame_rgb)
+                detection_result = detector.detect(mp_image)
+
+                if len(detection_result.detections) > 0:
+                    if random.random() < 0.05:
+                        state["total_monitored"] += 1
+                        database.increment_total_monitored()
+
+                pending_violations = []
+                for det in detection_result.detections:
+                    bbox = det.bounding_box
+                    cat = det.categories[0]
+                    cat_name = cat.category_name
+                    score = round(cat.score, 2)
+                    detections_out.append({
+                        "label": cat_name,
+                        "score": score,
+                        "box": {"x": int(bbox.origin_x), "y": int(bbox.origin_y),
+                                "w": int(bbox.width), "h": int(bbox.height)}
+                    })
+                    if cat_name == "Helmet":
+                        current_helmets += 1
+                    else:
+                        current_no_helmets += 1
+                        plate_text, is_new_plate = simulate_alpr()
+                        current_time = time.time()
+                        if is_new_plate or (current_time - last_violation_time) > 10.0:
+                            timestamp_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            status_str = "Logged" if plate_text else "Read Failure"
+                            snapshot_filename = f"violation_{int(current_time)}.jpg"
+                            pending_violations.append((timestamp_str, score, plate_text, status_str, snapshot_filename))
+                            recent_violation_timestamps.append(current_time)
+                            last_violation_time = current_time
+
+                if pending_violations:
+                    cv2.imwrite(f"violations/{pending_violations[0][4]}", frame)
+                    for v in pending_violations:
+                        database.add_violation(*v, camera_id=0)
+                    check_alerts(time.time())
+
+            state["current_helmets"] = current_helmets
+            state["current_no_helmets"] = current_no_helmets
+
+            await websocket.send_json({
+                "detections": detections_out,
+                "current_helmets": current_helmets,
+                "current_no_helmets": current_no_helmets
+            })
+
+    except WebSocketDisconnect:
+        logger.info("Camera WebSocket client disconnected")
+    except Exception as e:
+        logger.error(f"Camera WS error: {e}")
+
+
+
 @app.get("/camera/status")
 def get_cam_status():
     return JSONResponse(content={
