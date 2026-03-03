@@ -14,7 +14,7 @@ RUN pip install "python-jose[cryptography]" passlib[bcrypt] python-multipart slo
 
 # Copy backend application
 COPY server.py database.py best.tflite auth.py camera_manager.py ./
-COPY violations ./violations/
+RUN mkdir -p violations
 
 # Expose FastAPI Port
 EXPOSE 8000
